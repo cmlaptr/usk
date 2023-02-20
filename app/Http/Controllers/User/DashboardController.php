@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\User;
+
+use App\Http\Controllers\Controller;
+use App\Models\Buku;
+use App\Models\Kategori;
+use App\Models\Pemberitahuan;
+use Illuminate\Http\Request;
+
+class DashboardController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $pemberitahuan = Pemberitahuan::where('status','aktif')->get();
+        $kategori = Kategori::get();
+        $buku = Buku::all();
+
+        return view('user.dashboard', compact('buku', 'kategori', 'pemberitahuan'));
+    }
+
+}
